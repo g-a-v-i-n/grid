@@ -1,82 +1,66 @@
 import Head from 'next/head'
+import Link from 'next/link'
+
+function Tile({color, light, name, href, img}) {
+  return(
+    <Link href={href} >
+      <a target="_blank">
+      <div className={'rounded-xl relative cursor-pointer'} style={{width:'250px', height:'250px', backgroundColor: color || 'purple'}}>
+      <h3 className={`${light ? 'text-midWhite' : 'text-gray'} absolute bottom-7 left-7`}>{name}</h3>
+      {
+        img
+          ? <img style={{
+            width:'100px',
+            height:'100px',
+            top: '75px',
+            left: '75px',
+            position: 'absolute'            
+          }}
+          src={img}
+          />
+          : null
+      }
+      </div>
+      </a>
+    </Link>
+  )
+}
 
 export default function Home() {
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen py-2">
-      <Head>
-        <title>Create Next App</title>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-
-      <main className="flex flex-col items-center justify-center w-full flex-1 px-20 text-center">
-        <h1 className="text-6xl font-bold">
-          Welcome to{' '}
-          <a className="text-blue-600" href="https://nextjs.org">
-            Next.js!
-          </a>
-        </h1>
-
-        <p className="mt-3 text-2xl">
-          Get started by editing{' '}
-          <code className="p-3 font-mono text-lg bg-gray-100 rounded-md">
-            pages/index.js
-          </code>
-        </p>
-
-        <div className="flex flex-wrap items-center justify-around max-w-4xl mt-6 sm:w-full">
-          <a
-            href="https://nextjs.org/docs"
-            className="p-6 mt-6 text-left border w-96 rounded-xl hover:text-blue-600 focus:text-blue-600"
-          >
-            <h3 className="text-2xl font-bold">Documentation &rarr;</h3>
-            <p className="mt-4 text-xl">
-              Find in-depth information about Next.js features and API.
-            </p>
-          </a>
-
-          <a
-            href="https://nextjs.org/learn"
-            className="p-6 mt-6 text-left border w-96 rounded-xl hover:text-blue-600 focus:text-blue-600"
-          >
-            <h3 className="text-2xl font-bold">Learn &rarr;</h3>
-            <p className="mt-4 text-xl">
-              Learn about Next.js in an interactive course with quizzes!
-            </p>
-          </a>
-
-          <a
-            href="https://github.com/vercel/next.js/tree/master/examples"
-            className="p-6 mt-6 text-left border w-96 rounded-xl hover:text-blue-600 focus:text-blue-600"
-          >
-            <h3 className="text-2xl font-bold">Examples &rarr;</h3>
-            <p className="mt-4 text-xl">
-              Discover and deploy boilerplate example Next.js projects.
-            </p>
-          </a>
-
-          <a
-            href="https://vercel.com/import?filter=next.js&utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className="p-6 mt-6 text-left border w-96 rounded-xl hover:text-blue-600 focus:text-blue-600"
-          >
-            <h3 className="text-2xl font-bold">Deploy &rarr;</h3>
-            <p className="mt-4 text-xl">
-              Instantly deploy your Next.js site to a public URL with Vercel.
-            </p>
-          </a>
+    <div className="w-screen h-screen flex flex-col">
+    <Head>
+      <title>Landscape • Home</title>
+    </Head>
+    <header className="w-full flex justify-center items-center h-24">
+      <menu className="w-full max-w-screen-md flex">
+          <button className='circle-button mr-2 bg-black' />
+          <button className='circle-button mr-2 bg-blue text-white'>1</button>
+          <input type='text' className='bg-washedGray rounded-full w-full pl-4' placeholder="Search Landscape" />
+      </menu>
+    </header>
+    <main className='h-full w-full flex justify-center pt-16 pb-16'>
+      <div className='flex flex-col space-y-6' style={{width:'1100px'}}>
+        <div className="flex space-x-6">
+          <Tile color='#CDE7EF' name='Groups' href='/apps/groups' />
+          <Tile color='#8BE789' name='Messages' href='/apps/messages' />
+          <Tile color='#C2D6BE' name='Calls' href='/apps/calls' />
+          <Tile color='#F0AE70' name='Bitcoin Wallet' href='/apps/bitcoin-wallet' />
         </div>
-      </main>
-
-      <footer className="flex items-center justify-center w-full h-24 border-t">
-        <a
-          className="flex items-center justify-center"
-          href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Powered by{' '}
-          <img src="/vercel.svg" alt="Vercel Logo" className="h-4 ml-2" />
-        </a>
-      </footer>
-    </div>
+        <div className="flex space-x-6">
+          <Tile color='#2D0118' name='System' href='/apps/system' light img='system.png'/>
+          <Tile color='#D8B14E' name='My Apps' href='/apps/my-apps' />
+          <Tile color='#A58E52' name='Go' href='/apps/go' img='go.png'/>
+          <Tile color='#2D382B' name='Terminal' href='/apps/terminal' light/>
+        </div>
+        <div className="flex space-x-6">
+          <Tile color='#EE5432' name='Pomodoro' href='/apps/pomodoro' light />
+          <Tile color='#DCDCDC' name='Clocks' href='/apps/clocks' />
+          <Tile color='#FDA1FF' name='Uniswap' href='/apps/uniswap'/>
+          <Tile color='#FEFFBA' name='Inbox' href='/apps/inbox'/>
+      </div>
+      </div>
+    </main>
+  </div>
   )
 }
