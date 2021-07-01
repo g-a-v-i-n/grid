@@ -28,7 +28,7 @@ function Tile({color, light, name, href, img}) {
 
 export default function Home() {
   return (
-    <div className="w-screen h-screen flex flex-col">
+    <div className="w-screen flex flex-col">
     <Head>
       <title>Landscape • Home</title>
     </Head>
